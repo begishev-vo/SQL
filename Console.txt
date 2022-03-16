@@ -1,0 +1,174 @@
+Microsoft Windows [Version 10.0.19044.1586]
+(c) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test1              |
+| test2              |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use test1;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_test1 |
++-----------------+
+| test1_tbl       |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> select * from test1_tbl;
++------+-------+
+| id   | name  |
++------+-------+
+|    1 | test1 |
+|    2 | test2 |
++------+-------+
+2 rows in set (0.02 sec)
+
+mysql> exit;
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> use test1;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test1              |
+| test2              |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p test1 > C:\Users\VB\Desktop\new_dump\test1_dump.sql
+Enter password: ****
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 13
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database test1_dmp;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test1              |
+| test1_dmp          |
+| test2              |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> use test1_dmp
+Database changed
+mysql> show tables
+    -> show tables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'show tables' at line 2
+mysql> show tables;
+Empty set (0.00 sec)
+
+mysql> exit;
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p test1_dmp < C:\Users\VB\Desktop\new_dump\test1_dump.sql
+Enter password: ****
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use test1_dmp;
+Database changed
+mysql> show tables;
++---------------------+
+| Tables_in_test1_dmp |
++---------------------+
+| test1_tbl           |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select * from test1_tbl;
++------+-------+
+| id   | name  |
++------+-------+
+|    1 | test1 |
+|    2 | test2 |
++------+-------+
+2 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysqldump -u root -p test1 > C:\Users\VB\Desktop\new_dump\test1_dump.sql
+Enter password: ****
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>C
